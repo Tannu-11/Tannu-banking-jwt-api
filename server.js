@@ -6,7 +6,20 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-
+app.get("/", (req, res) => {
+    res.send("🚀 Banking API is running successfully!");
+});
+app.get("/demo", (req, res) => {
+    res.json({
+        message: "API is working!",
+        endpoints: {
+            register: "/api/auth/register (POST)",
+            login: "/api/auth/login (POST)",
+            balance: "/api/bank/balance (GET - token required)",
+            deposit: "/api/bank/deposit (POST - token required)"
+        }
+    });
+});
 // Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/bank", require("./routes/bankRoutes"));
